@@ -3,14 +3,14 @@ import 'dart:io';
 import 'package:chat/Components/button_widget.dart';
 import 'package:chat/Components/text_field_string_widget.dart';
 import 'package:chat/Components/user_image_picker_widget.dart';
-import 'package:chat/models/auth_form_data.dart';
+import 'package:chat/core/models/auth_form_data.dart';
 import 'package:flutter/material.dart';
 
 class AuthFormWidget extends StatefulWidget {
   final AuthFormData formData;
   final bool fullForm;
   final void Function() function;
-  final void Function() submit;
+  final Future<void> Function() submit;
   const AuthFormWidget({
     required this.formData,
     required this.fullForm,
@@ -65,8 +65,10 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
   }
 
   void _submit() {
-    String _imageError =
-        widget.formData.image == null ? "Escolha uma imagem." : "";
+    String _imageError = (widget.formData.image == null &&
+            widget.formData.authMethod == AuthFormMethod.Signup)
+        ? "Escolha uma imagem."
+        : "";
     String _nameError = "";
     String _emailError = "";
     String _passwordError = "";

@@ -1,3 +1,4 @@
+import 'package:chat/screens/auth_or_page.dart';
 import 'package:chat/screens/auth_screen.dart';
 import 'package:chat/screens/home_screen.dart';
 import 'package:chat/screens/tab_screen.dart';
@@ -51,10 +52,11 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const AuthScreen(),
+      home: const AuthOrPage(),
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.LOGIN,
+      initialRoute: AppRoutes.HOME,
       routes: {
+        AppRoutes.AUTH: (context) => const AuthScreen(),
         AppRoutes.APP: (context) => const TabScreen(),
       },
     );

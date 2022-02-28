@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:chat/Components/app_bar_widget.dart';
 import 'package:chat/Components/screen_holder_widget.dart';
-import 'package:chat/models/auth_form_data.dart';
+import 'package:chat/core/models/auth_form_data.dart';
+import 'package:chat/core/services/auth/auth_mock_service.dart';
 import 'package:flutter/material.dart';
-
 import '../Components/auth_form_widget.dart';
+import '../core/models/auth_form_data.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({Key? key}) : super(key: key);
@@ -24,16 +25,24 @@ class _AuthScreenState extends State<AuthScreen> {
     });
   }
 
-  void _submit() {
-    setState(() {
-      _isLoading = true;
-      Timer(
-        Duration(seconds: 4),
-        () => setState(() {
-          _isLoading = false;
-        }),
-      );
-    });
+  Future<void> _submit() async {
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+      if (_formData.authMethod == AuthFormMethod.Login) {
+        await AuthMockService().login(_formData.email, _formData.password);
+      } else {
+        await AuthMockService().signUp(_formData.name, _formData.email,
+            _formData.password, _formData.image!);
+      }
+    } catch (error) {
+      //
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override
