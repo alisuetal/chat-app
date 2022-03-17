@@ -40,7 +40,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
       onTap: _pickImage,
       child: CircleAvatar(
         radius: 40,
-        child: _image == null ? Icon(Icons.add_rounded) : Container(),
+        child: _image == null ? const Icon(Icons.add_rounded) : Container(),
         backgroundImage: _image != null ? FileImage(_image!) : null,
       ),
     );

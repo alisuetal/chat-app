@@ -66,7 +66,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
 
   void _submit() {
     String _imageError = (widget.formData.image == null &&
-            widget.formData.authMethod == AuthFormMethod.Signup)
+            widget.formData.authMethod == AuthFormMethod.signup)
         ? "Escolha uma imagem."
         : "";
     String _nameError = "";
@@ -74,7 +74,7 @@ class _AuthFormWidgetState extends State<AuthFormWidget> {
     String _passwordError = "";
 
     if (!_nameValidation() &&
-        widget.formData.authMethod == AuthFormMethod.Signup) {
+        widget.formData.authMethod == AuthFormMethod.signup) {
       _nameError = "Nome deve ter no mínino 5 caracteres.";
     }
     if (!_emailValidation()) {

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:chat/Components/app_bar_widget.dart';
 import 'package:chat/Components/screen_holder_widget.dart';
 import 'package:chat/core/models/auth_form_data.dart';
-import 'package:chat/core/services/auth/auth_mock_service.dart';
+import 'package:chat/core/services/auth/auth_service.dart';
 import 'package:flutter/material.dart';
 import '../Components/auth_form_widget.dart';
 import '../core/models/auth_form_data.dart';
@@ -30,10 +30,10 @@ class _AuthScreenState extends State<AuthScreen> {
       setState(() {
         _isLoading = true;
       });
-      if (_formData.authMethod == AuthFormMethod.Login) {
-        await AuthMockService().login(_formData.email, _formData.password);
+      if (_formData.authMethod == AuthFormMethod.login) {
+        await AuthService().login(_formData.email, _formData.password);
       } else {
-        await AuthMockService().signUp(_formData.name, _formData.email,
+        await AuthService().signUp(_formData.name, _formData.email,
             _formData.password, _formData.image!);
       }
     } catch (error) {
@@ -54,10 +54,10 @@ class _AuthScreenState extends State<AuthScreen> {
             )
           : Column(
               children: [
-                AppBarWidget(title: "Chat", backButton: false),
+                const AppBarWidget(title: "Chat", backButton: false),
                 AuthFormWidget(
                   formData: _formData,
-                  fullForm: _formData.authMethod == AuthFormMethod.Login
+                  fullForm: _formData.authMethod == AuthFormMethod.login
                       ? false
                       : true,
                   function: () => _toggleMethod(),
