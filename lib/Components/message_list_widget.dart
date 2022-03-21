@@ -48,30 +48,32 @@ class MessageListWidget extends StatelessWidget {
           );
         } else {
           final msgs = snapshot.data!;
-          return ListView.builder(
-            reverse: true,
-            itemCount: msgs.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (ctx, i) {
-              final sameUser = i + 1 < msgs.length
-                  ? msgs[i + 1].userId == msgs[i].userId
-                      ? true
-                      : false
-                  : false;
+          return SizedBox(
+            height: MediaQuery.of(context).size.height <= 600
+                ? 400
+                : MediaQuery.of(context).size.height * 0.66,
+            child: ListView.builder(
+              itemCount: msgs.length,
+              itemBuilder: (ctx, i) {
+                final sameUser = i - 1 >= 0
+                    ? msgs[i - 1].userId == msgs[i].userId
+                        ? true
+                        : false
+                    : false;
 
-              return Padding(
-                padding: EdgeInsets.only(
-                  top: sameUser ? 6 : 16,
-                ),
-                child: MessageWidget(
-                  key: ValueKey(msgs[i].id),
-                  message: msgs[i],
-                  belongsToCurrentUser: currentUser?.id == msgs[i].userId,
-                  showUserInformation: !sameUser,
-                ),
-              );
-            },
+                return Padding(
+                  padding: EdgeInsets.only(
+                    top: sameUser ? 6 : 16,
+                  ),
+                  child: MessageWidget(
+                    key: ValueKey(msgs[i].id),
+                    message: msgs[i],
+                    belongsToCurrentUser: currentUser?.id == msgs[i].userId,
+                    showUserInformation: !sameUser,
+                  ),
+                );
+              },
+            ),
           );
         }
       },

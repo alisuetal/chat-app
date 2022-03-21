@@ -10,7 +10,11 @@ The project will be under development while the taks below are not completed.
 
 - [ ] Sign-up function;
 - [ ] Sign-in function;
-- *MORE* TO COME.
+- [ ] Send messages;
+- [ ] Retrieve messages;
+- [ ] See profiles;
+- [ ] Push notification;
+- [ ] Change profile information;
 
 ## 💻 Requirements
 

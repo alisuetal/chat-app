@@ -22,7 +22,8 @@ class ScreenHolderWidget extends StatelessWidget {
           ),
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              minHeight: screenSize.height < 620 ? 620 : screenSize.height,
+              minHeight:
+                  screenSize.height < 620 ? 620 : screenSize.height * 0.87,
               maxWidth: 640,
               minWidth: 256,
             ),
