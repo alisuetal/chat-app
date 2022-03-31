@@ -25,38 +25,44 @@ class MessageListWidget extends StatelessWidget {
             padding: const EdgeInsets.only(
               top: 128,
             ),
-            child: Column(
-              children: const [
-                Icon(
-                  Icons.message_rounded,
-                  color: Colors.black38,
-                  size: 32,
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Text(
-                  "No texts yet.",
-                  style: TextStyle(
-                    color: Colors.black45,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height <= 600
+                  ? 400
+                  : MediaQuery.of(context).size.height * 0.36,
+              child: Column(
+                children: const [
+                  Icon(
+                    Icons.message_rounded,
+                    color: Colors.black38,
+                    size: 32,
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    "No texts yet.",
+                    style: TextStyle(
+                      color: Colors.black45,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ],
+              ),
             ),
           );
         } else {
-          final msgs = snapshot.data!;
+          final msgs = snapshot.data!.reversed.toList();
           return SizedBox(
             height: MediaQuery.of(context).size.height <= 600
                 ? 400
-                : MediaQuery.of(context).size.height * 0.66,
+                : MediaQuery.of(context).size.height * 0.5,
             child: ListView.builder(
+              reverse: true,
               itemCount: msgs.length,
               itemBuilder: (ctx, i) {
-                final sameUser = i - 1 >= 0
-                    ? msgs[i - 1].userId == msgs[i].userId
+                final sameUser = i + 1 < msgs.length
+                    ? msgs[i + 1].userId == msgs[i].userId
                         ? true
                         : false
                     : false;

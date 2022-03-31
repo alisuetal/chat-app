@@ -72,8 +72,8 @@ class _MessageTextFieldWidgetState extends State<MessageTextFieldWidget> {
                           widget.onSend();
                           _textController.clear();
                         },
-                  child: Padding(
-                    padding: const EdgeInsets.only(
+                  child: const Padding(
+                    padding: EdgeInsets.only(
                       right: 20,
                     ),
                     child: Icon(

@@ -27,6 +27,7 @@ class ChatMockService implements ChatService {
       userId: user.id,
       userName: user.name,
       userImageURL: user.imageURL,
+      userEmail: user.email,
     );
     _msgs.add(newMessage);
     _controller?.add(_msgs);

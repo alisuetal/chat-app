@@ -1,6 +1,6 @@
-import 'dart:io';
-
+import 'package:chat/core/models/chat_user.dart';
 import 'package:chat/core/models/message_model.dart';
+import 'package:chat/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 
 class MessageWidget extends StatelessWidget {
@@ -14,6 +14,19 @@ class MessageWidget extends StatelessWidget {
     required this.belongsToCurrentUser,
     required this.showUserInformation,
   }) : super(key: key);
+
+  void _openProfile(BuildContext context, MessageModel message) {
+    final user = ChatUser(
+      id: message.userId,
+      email: message.userEmail,
+      imageURL: message.userImageURL,
+      name: message.userName,
+    );
+    Navigator.of(context).pushNamed(
+      AppRoutes.PROFILE,
+      arguments: user,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +45,15 @@ class MessageWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        message.userName,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                      GestureDetector(
+                        onTap: () => _openProfile(context, message),
+                        child: Text(
+                          message.userName,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
                         ),
                       ),
                     ],

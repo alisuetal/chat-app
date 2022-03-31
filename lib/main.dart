@@ -1,5 +1,6 @@
 import 'package:chat/screens/auth_or_page.dart';
 import 'package:chat/screens/auth_screen.dart';
+import 'package:chat/screens/profile_screen.dart';
 import 'package:chat/screens/tab_screen.dart';
 import 'package:chat/utils/app_routes.dart';
 import 'package:chat/utils/palette.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AppRoutes.AUTH: (context) => const AuthScreen(),
         AppRoutes.APP: (context) => const TabScreen(),
+        AppRoutes.PROFILE: (context) => const ProfileScreen(),
       },
     );
   }

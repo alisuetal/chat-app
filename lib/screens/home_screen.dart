@@ -4,7 +4,6 @@ import 'package:chat/Components/message_text_field_widget.dart';
 import 'package:chat/Components/screen_holder_widget.dart';
 import 'package:chat/core/services/auth/auth_service.dart';
 import 'package:chat/core/services/chat/chat_service.dart';
-import 'package:chat/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,7 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
     final user = AuthService().currentUser;
 
     if (user != null) {
-      print("!");
       await ChatService().save(_message, user);
     }
   }
@@ -33,6 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           const AppBarWidget(title: "Chat", backButton: false),
           const MessageListWidget(),
+          const SizedBox(
+            height: 32,
+          ),
           MessageTextFieldWidget(
             anchor: (String value) {
               _message = value;

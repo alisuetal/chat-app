@@ -4,9 +4,10 @@ import 'package:chat/core/services/chat/chat_mock_service.dart';
 
 abstract class ChatService {
   Stream<List<MessageModel>> messagesStream();
-  Future<MessageModel> save(String text, ChatUser user);
+  Future<MessageModel?> save(String text, ChatUser user);
 
   factory ChatService() {
     return ChatMockService();
+    // return ChatFirebaseService();
   }
 }

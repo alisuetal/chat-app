@@ -1,5 +1,6 @@
 import 'package:chat/Components/nav_bar_icon_widget.dart';
 import 'package:chat/screens/home_screen.dart';
+import 'package:chat/screens/settings_page.dart';
 import 'package:flutter/material.dart';
 
 class TabScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _TabScreenState extends State<TabScreen> {
 
   late final List<Widget> _screens = [
     const HomeScreen(),
-    Container(),
+    const SettingsScreen(),
   ];
 
   _selectScreen(int index) {

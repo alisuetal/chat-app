@@ -5,6 +5,7 @@ class MessageModel {
   //user data
   final String userId;
   final String userName;
+  final String userEmail;
   final String userImageURL;
 
   const MessageModel({
@@ -13,6 +14,7 @@ class MessageModel {
     required this.createdAt,
     required this.userId,
     required this.userName,
+    required this.userEmail,
     required this.userImageURL,
   });
 }
